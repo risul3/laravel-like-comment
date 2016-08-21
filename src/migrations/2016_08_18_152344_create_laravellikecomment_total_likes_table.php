@@ -15,7 +15,8 @@ class CreateLaravellikecommentTotalLikesTable extends Migration
         Schema::create('laravellikecomment_total_likes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('item_id'); // ModelName_modelId
-            $table->integer('total');
+            $table->integer('total_like');
+            $table->integer('total_dislike');
             $table->timestamps();
         });
     }

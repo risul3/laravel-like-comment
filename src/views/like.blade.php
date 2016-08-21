@@ -1,83 +1,34 @@
-<i class="icon empty heart">Hello</i>
+<?php
+	$totalCount = \risul\LaravelLikeComment\Models\TotalLike::where('item_id', $item_id)->first();
+	if($totalCount == NULL){
+		$totalCount = new \risul\LaravelLikeComment\Models\TotalLike;
+		$totalCount->item_id = $item_id;
+		$totalCount->total_like = 0;
+		$totalCount->total_dislike = 0;
 
-<div class="ui comments">
-  <h3 class="ui dividing header">Comments</h3>
-  <div class="comment">
-    <a class="avatar">
-      <img src="{{ asset('img/matt.jpg') }}">
-    </a>
-    <div class="content">
-      <a class="author">Matt</a>
-      <div class="metadata">
-        <span class="date">Today at 5:42PM</span>
-      </div>
-      <div class="text">
-        How artistic!
-      </div>
-      <div class="actions">
-        <a class="reply">Reply</a>
-      </div>
-    </div>
-  </div>
-  <div class="comment">
-    <a class="avatar">
-      <img src="{{ asset('img/matt.jpg') }}">
-    </a>
-    <div class="content">
-      <a class="author">Elliot Fu</a>
-      <div class="metadata">
-        <span class="date">Yesterday at 12:30AM</span>
-      </div>
-      <div class="text">
-        <p>This has been very useful for my research. Thanks as well!</p>
-      </div>
-      <div class="actions">
-        <a class="reply">Reply</a>
-      </div>
-    </div>
-    <div class="comments">
-      <div class="comment">
-        <a class="avatar">
-          <img src="{{ asset('img/matt.jpg') }}">
-        </a>
-        <div class="content">
-          <a class="author">Jenny Hess</a>
-          <div class="metadata">
-            <span class="date">Just now</span>
-          </div>
-          <div class="text">
-            Elliot you are always so right :)
-          </div>
-          <div class="actions">
-            <a class="reply">Reply</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="comment">
-    <a class="avatar">
-      <img src="{{ asset('img/matt.jpg') }}">
-    </a>
-    <div class="content">
-      <a class="author">Joe Henderson</a>
-      <div class="metadata">
-        <span class="date">5 days ago</span>
-      </div>
-      <div class="text">
-        Dude, this is awesome. Thanks so much
-      </div>
-      <div class="actions">
-        <a class="reply">Reply</a>
-      </div>
-    </div>
-  </div>
-  <form class="ui reply form">
-    <div class="field">
-      <textarea></textarea>
-    </div>
-    <div class="ui blue labeled submit icon button">
-      <i class="icon edit"></i> Add Reply
-    </div>
-  </form>
+		$totalCount->save();
+	}
+
+	$yourVote = 0; // 0 = Not voted, 1 = Liked, -1 = Disliked
+	if(Auth::check()){
+		$checkYourVote = \risul\LaravelLikeComment\Models\Like::where([
+																'user_id' => Auth::user()->id,
+																'item_id' => $item_id
+																])->first();
+		if($checkYourVote != NULL){
+			$yourVote = $checkYourVote->vote;
+		}
+	}
+
+	$LikeDisabled = "";
+	if(!Auth::check()){
+		$LikeDisabled = "disabled";
+	}
+
+	$likeIconOutlined = $yourVote == 1 ? "" : "outline";
+	$dislikeIconOutlined = $yourVote == -1 ? "" : "outline";
+?>
+<div class="laravel-like">
+	<i id="{{ $item_id }}-like" class="icon {{ $LikeDisabled }} {{ $likeIconOutlined }} laravelLike-icon thumbs up" data-item-id="{{ $item_id }}" data-vote="1"></i><span id="{{ $item_id }}-total-like">{{ $totalCount->total_like }}</span>
+	<i id="{{ $item_id }}-dislike" class="icon {{ $LikeDisabled }} {{ $dislikeIconOutlined }} laravelLike-icon thumbs down" data-item-id="{{ $item_id }}" data-vote="-1"></i><span id="{{ $item_id }}-total-dislike">{{ $totalCount->total_dislike }}</span>
 </div>

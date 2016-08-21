@@ -16,7 +16,7 @@ class CreateLaravellikecommentLikesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('item_id'); // ModelName_modelId
-            $table->smallInteger('like');
+            $table->smallInteger('vote');
             $table->timestamps();
         });
     }

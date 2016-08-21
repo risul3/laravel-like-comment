@@ -14,10 +14,10 @@ class LikeCommentServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/Config/laravelLikeComment.php' => config_path('laravelLikeComment.php'),
             __DIR__.'/views' => resource_path('views/vendor/laravelLikeComment'),
             __DIR__.'/migrations' => database_path('migrations'),
-             __DIR__.'/public/assets' => public_path('vendor/laravelLikeComment'),
+            __DIR__.'/public/assets' => public_path('vendor/laravelLikeComment'),
+            __DIR__.'/Config/laravelLikeComment.php' => config_path('laravelLikeComment.php')
         ]);
     }
 
