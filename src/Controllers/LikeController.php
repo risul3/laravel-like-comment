@@ -77,4 +77,49 @@ class LikeController extends Controller
 
     	return response()->json(['flag' => 1, 'vote' => $vote, 'totalLike' => $totalLike->total_like, 'totalDislike' => $totalLike->total_disLike]);
     }
+
+    /**
+     * undocumented function
+     *
+     * @return void
+     * @author 
+     **/
+    public static function getLikeViewData($itemId){
+		$totalCount = TotalLike::where('item_id', $itemId)->first();
+		if($totalCount == NULL){
+			$totalCount = new TotalLike;
+			$totalCount->item_id = $itemId;
+			$totalCount->total_like = 0;
+			$totalCount->total_dislike = 0;
+
+			$totalCount->save();
+		}
+
+		$yourVote = 0; // 0 = Not voted, 1 = Liked, -1 = Disliked
+		if(Auth::check()){
+			$checkYourVote = \risul\LaravelLikeComment\Models\Like::where([
+																	'user_id' => Auth::user()->id,
+																	'item_id' => $itemId
+																	])->first();
+			if($checkYourVote != NULL){
+				$yourVote = $checkYourVote->vote;
+			}
+		}
+
+		$likeDisabled = "";
+		if(!Auth::check()){
+			$likeDisabled = "disabled";
+		}
+
+		$likeIconOutlined = $yourVote == 1 ? "" : "outline";
+		$dislikeIconOutlined = $yourVote == -1 ? "" : "outline";
+
+		return [
+			$itemId.'likeDisabled' => $likeDisabled,
+			$itemId.'likeIconOutlined' => $likeIconOutlined,
+			$itemId.'dislikeIconOutlined' => $dislikeIconOutlined,
+			$itemId.'total_like' => $totalCount->total_like,
+			$itemId.'total_dislike' => $totalCount->total_dislike,
+		];
+    }
 }

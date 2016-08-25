@@ -1,5 +1,5 @@
 <?php
- 
+ use Auth;
 return [
-    'message' => 'Config file works.'
+    'userModel' => 'App\User'
 ];

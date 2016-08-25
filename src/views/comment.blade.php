@@ -1,81 +1,72 @@
-<div class="ui comments">
-  <h3 class="ui dividing header">Comments</h3>
-  <div class="comment">
-    <a class="avatar">
-      <img src="{{ asset('img/matt.jpg') }}">
-    </a>
-    <div class="content">
-      <a class="author">Matt</a>
-      <div class="metadata">
-        <span class="date">Today at 5:42PM</span>
-      </div>
-      <div class="text">
-        How artistic!
-      </div>
-      <div class="actions">
-        <a class="reply">Reply</a>
-      </div>
-    </div>
-  </div>
-  <div class="comment">
-    <a class="avatar">
-      <img src="{{ asset('img/matt.jpg') }}">
-    </a>
-    <div class="content">
-      <a class="author">Elliot Fu</a>
-      <div class="metadata">
-        <span class="date">Yesterday at 12:30AM</span>
-      </div>
-      <div class="text">
-        <p>This has been very useful for my research. Thanks as well!</p>
-      </div>
-      <div class="actions">
-        <a class="reply">Reply</a>
-      </div>
-    </div>
-    <div class="comments">
-      <div class="comment">
+<?php
+$GLOBALS['commentDisabled'] = "";
+if(!Auth::check())
+    $GLOBALS['commentDisabled'] = "disabled";
+$GLOBALS['commentClass'] = -1;
+?>
+<div class="laravelComment" id="laravelComment-{{ $comment_item_id }}">
+    <h3 class="ui dividing header">Comments</h3>
+    <div class="ui threaded comments" id="{{ $comment_item_id }}-comment-0">
+        <form class="ui laravelComment-form form" id="{{ $comment_item_id }}-comment-form" data-parent="0" data-item="{{ $comment_item_id }}">
+            <div class="field">
+                <textarea id="0-textarea" rows="2" {{ $GLOBALS['commentDisabled'] }}></textarea>
+                @if(!Auth::check())
+                    <small>Please Log in to comment</small>
+                @endif
+            </div>
+            <input type="submit" class="ui basic small submit button" value="Comment" {{ $GLOBALS['commentDisabled'] }}>
+        </form>
+<?php
+$GLOBALS['commentVisit'] = array();
+
+function dfs($comments, $comment){
+    $GLOBALS['commentVisit'][$comment->id] = 1;
+    $GLOBALS['commentClass']++;
+?>
+    <div class="comment show-{{ (int)($GLOBALS['commentClass'] / 5) }}" id="comment-{{ $comment->id }}">
         <a class="avatar">
-          <img src="{{ asset('img/matt.jpg') }}">
+            <img src="{{ $comment->avatar }}">
         </a>
         <div class="content">
-          <a class="author">Jenny Hess</a>
-          <div class="metadata">
-            <span class="date">Just now</span>
-          </div>
-          <div class="text">
-            Elliot you are always so right :)
-          </div>
-          <div class="actions">
-            <a class="reply">Reply</a>
-          </div>
+            <a class="author" url="{{ $comment->url or '' }}"> {{ $comment->userName }} </a>
+            <div class="metadata">
+                <span class="date">{{ $comment->updated_at->diffForHumans() }}</span>
+            </div>
+            <div class="text">
+                {{ $comment->comment }}
+            </div>
+            <div class="actions">
+                <a class="{{ $GLOBALS['commentDisabled'] }} reply reply-button" data-toggle="{{ $comment->id }}-reply-form">Reply</a>
+            </div>
+            {{ \risul\LaravelLikeComment\Controllers\CommentController::viewLike('comment-'.$comment->id) }}
+            <form id="{{ $comment->id }}-reply-form" class="ui laravelComment-form form" data-parent="{{ $comment->id }}" data-item="{{ $comment->item_id }}" style="display: none;">
+                <div class="field">
+                    <textarea id="{{ $comment->id }}-textarea" rows="2" {{ $GLOBALS['commentDisabled'] }}></textarea>
+                    @if(!Auth::check())
+                        <small>Please Log in to comment</small>
+                    @endif
+                </div>
+                <input type="submit" class="ui basic small submit button" value="Comment" {{ $GLOBALS['commentDisabled'] }}>
+            </form>
         </div>
-      </div>
+        <div class="comments" id="{{ $comment->item_id }}-comment-{{ $comment->id }}">
+<?php
+    foreach ($comments as $child) {
+        if($child->parent_id == $comment->id && !isset($GLOBALS['commentVisit'][$child->id])){
+            dfs($comments, $child);
+        }
+    }
+    echo "</div>";
+    echo "</div>";
+}
+
+$comments = \risul\LaravelLikeComment\Controllers\CommentController::getComments($comment_item_id);
+foreach ($comments as $comment) {
+    if(!isset($GLOBALS['commentVisit'][$comment->id])){
+        dfs($comments, $comment);
+    }
+}
+?>
     </div>
-  </div>
-  <div class="comment">
-    <a class="avatar">
-      <img src="{{ asset('img/matt.jpg') }}">
-    </a>
-    <div class="content">
-      <a class="author">Joe Henderson</a>
-      <div class="metadata">
-        <span class="date">5 days ago</span>
-      </div>
-      <div class="text">
-        Dude, this is awesome. Thanks so much
-      </div>
-      <div class="actions">
-        <a class="reply">Reply</a>
-      </div>
-    </div>
-  </div>
-  <form class="ui reply form">
-    <div class="field">
-      <textarea></textarea>
-    </div>
-    <div class="ui blue labeled submit icon button">
-      <i class="icon edit"></i> Add Reply
-    </div>
-  </form>
+    <button class="ui basic button" id="showComment" data-show-comment="0">Show comments</button>
 </div>
