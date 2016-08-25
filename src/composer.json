@@ -3,12 +3,18 @@
     "description": "Ajax based site wide like and comment system for laravel site which can be used for any model or page.",
     "type": "library",
     "license": "MIT",
+    "keywords": ["laravel", "like", "comment", "ajax"],
     "authors": [
         {
             "name": "risul",
             "email": "risul321@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {}
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "risul\\LaravelLikeComment\\": "src/"
+        }
+    }
 }
