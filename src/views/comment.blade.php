@@ -23,7 +23,7 @@ function dfs($comments, $comment){
     $GLOBALS['commentVisit'][$comment->id] = 1;
     $GLOBALS['commentClass']++;
 ?>
-    <div class="comment show-{{ (int)($GLOBALS['commentClass'] / 5) }}" id="comment-{{ $comment->id }}">
+    <div class="comment show-{{ $comment->item_id }}-{{ (int)($GLOBALS['commentClass'] / 5) }}" id="comment-{{ $comment->id }}">
         <a class="avatar">
             <img src="{{ $comment->avatar }}">
         </a>
@@ -68,5 +68,5 @@ foreach ($comments as $comment) {
 }
 ?>
     </div>
-    <button class="ui basic button" id="showComment" data-show-comment="0">Show comments</button>
+    <button class="ui basic button" id="showComment" data-show-comment="0" data-item-id="{{ $comment_item_id }}">Show comments</button>
 </div>

@@ -70,7 +70,7 @@ $(document).on('submit', '.laravelComment-form', function(){
 
 $(document).on('click', '#showComment', function(){
     var show = $(this).data("show-comment");
-    $('.show-'+show).fadeIn('normal');
+    $('.show-'+$(this).data("item-id")+'-'+show).fadeIn('normal');
     $(this).data("show-comment", show+1);
     $(this).text("Show more");
 });
