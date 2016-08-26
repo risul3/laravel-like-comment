@@ -21,15 +21,16 @@ risul\LaravelLikeComment\LikeCommentServiceProvider::class in config/app.php
 ```
 in your ```service providerr``` list.
 
-Run 
+To copy views and migrations run 
 ``` 
 php artisan vendor:publish
 ```
 
-Run 
+Run
 ```
 php artisan migrate
 ```
+It will create like and comment table.
 
 Add this semantic style links to your view head
 ```html
@@ -40,11 +41,10 @@ Add this semantic style links to your view head
 ```
 
 
-In  ```config/laravelLikeComment.php``` add user model path
-```
+In `config/laravelLikeComment.php` add user model path
+```php
 'userModel' => 'App\User'
 ```
-
 
 Add following code in your user model 
 ```php
@@ -61,22 +61,21 @@ Add following code in your user model
             'name'   => $user->name,
             'email'  => $user->email,
             'url'    => '',  // Optional
-            'avatar' => 'gravatar',  // Default gravatar
+            'avatar' => 'gravatar',  // Default avatar
             'admin'  => $user->role === 'admin', // bool
         ];
     }
 ```
 
-
 ## Usage
 Add this line at where you want to integrate Like
 ```php
-@include('laravelLikeComment::like', ['like_item_id' => 'post_31'])
+@include('laravelLikeComment::like', ['like_item_id' => 'image_31'])
 ```
-```like_item_id:``` This is the id of the item/page/model for which the like will be used
+`like_item_id:` This is the id of the item,page or model for which the like will be used
 
 Add this line where you want to integrate Comment
 ```php
-@include('laravelLikeComment::comment', ['comment_item_id' => '12'])
+@include('laravelLikeComment::comment', ['comment_item_id' => 'video_12'])
 ```
-```comment_item_id:``` This is the id of the item/page/model for which the comment will be used
+```comment_item_id:``` This is the id of the item, page, or model for which the comment will be used
