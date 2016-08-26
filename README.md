@@ -4,7 +4,7 @@
 [![Total Downloads](https://poser.pugx.org/risul/laravel-like-comment/downloads)](https://packagist.org/packages/risul/laravel-like-comment)
 [![License](https://poser.pugx.org/risul/laravel-like-comment/license)](https://packagist.org/packages/risul/laravel-like-comment)
 
-laravel-like-comment is a laravel package. It's an ajax based like and commenting system. Which can be used with anything like page, image, post, video etc. User needs to be loged in to be able to like or comment.
+laravel-like-comment is an ajax based like and commenting system for laravel. Which can be used with anything like page, image, post, video etc. User needs to be loged in to be able to like or comment.
 
 ## Features
 * Like
