@@ -23,7 +23,7 @@ composer require risul/laravel-like-comment
 ## Configuration
 Add 
 ``` 
-risul\LaravelLikeComment\LikeCommentServiceProvider::class in config/app.php
+risul\LaravelLikeComment\LikeCommentServiceProvider::class
 ```
 in your ```service providerr``` list.
 
