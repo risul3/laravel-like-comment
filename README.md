@@ -1,29 +1,45 @@
--Installation
-run composer require risul/laravel-like-comment
+# Installation
 
--Configuration
-Add risul\LaravelLikeComment\LikeCommentServiceProvider::class in config/app.php
+Run 
+``` 
+composer require risul/laravel-like-comment 
+```
 
-run php artisan vendor:publish
+### Configuration
 
-run php artisan migrate
+Add 
+``` 
+risul\LaravelLikeComment\LikeCommentServiceProvider::class in config/app.php
+```
+in your ```service providerr``` list.
 
-Add this semantic style links to your view head
+Run 
+``` 
+php artisan vendor:publish
+```
 
+Run 
+```
+php artisan migrate
+```
+
+Run Add this semantic style links to your view head
+```
     <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/icon.min.css" rel="stylesheet">
     <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/comment.min.css" rel="stylesheet">
     <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/form.min.css" rel="stylesheet">
     <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/button.min.css" rel="stylesheet">
+```
 
 
+In  ```config/laravelLikeComment.php``` add user model path
+```
+'userModel' => 'App\User'
+```
 
-In config/laravelLikeComment.php add user model path
-	
-	'userModel' => 'App\User'
 
-
-Add following code in your user model
-
+Add following code in your user model 
+```
     /**
      * Return the user attributes.
 
@@ -41,16 +57,18 @@ Add following code in your user model
             'admin'  => $user->role === 'admin', // bool
         ];
     }
+```
 
--Usage
-Add this line where you want to integrate Like
-    @include('laravelLikeComment::like', ['like_item_id' => '12'])
 
-    like_item_id:
+### Usage
+Add this line at where you want to integrate Like
+```
+@include('laravelLikeComment::like', ['like_item_id' => 'post_31'])
+```
+```like_item_id:``` This is the id of the item/page/model for which the like will be used
 
 Add this line where you want to integrate Comment
-    @include('laravelLikeComment::comment', ['comment_item_id' => '12'])
-    This is the id of the item/page/model for which the like will be used
-
-    comment_item_id:
-    This is the id of the item/page/model for which the comment will be used
+```
+@include('laravelLikeComment::comment', ['comment_item_id' => '12'])
+```
+```comment_item_id:``` This is the id of the item/page/model for which the comment will be used
