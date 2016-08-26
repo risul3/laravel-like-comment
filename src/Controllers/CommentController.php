@@ -32,10 +32,11 @@ class CommentController extends Controller
     	$commentBody = $request->comment;
     	$itemId = $request->item_id;
 
-    	$hash = md5(strtolower(trim("rashedulislam@gmail.com")));
-	    $userPic = "http://www.gravatar.com/avatar/$hash?d=identicon";
-    	// $userPic = asset("img/matt.jpg");
-
+        $user = self::getUser($userId);
+        if($user['avatar'] == 'gravatar'){
+            $hash = md5(strtolower(trim($user['email'])));
+            $userPic = "http://www.gravatar.com/avatar/$hash?d=identicon";
+        }
 
 	    $comment = new Comment;
 	    $comment->user_id = $userId;
