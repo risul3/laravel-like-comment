@@ -70,4 +70,3 @@ foreach ($comments as $comment) {
     </div>
     <button class="ui basic button" id="showComment" data-show-comment="0" data-item-id="{{ $comment_item_id }}">Show comments</button>
 </div>
-<style>.comment{display:none;}</style>
