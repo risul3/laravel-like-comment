@@ -10,9 +10,10 @@ laravel-like-comment is a laravel package. It's an ajax based like and commentin
 
 ## Installation
 
-Add `"risul/laravel-like-comment": "dev-master"` In your `composer.json` file.
-
-Run ` composer update `
+Run
+```bash
+composer require risul/laravel-like-comment
+```
 
 ## Configuration
 Add 
