@@ -1,17 +1,20 @@
-# Installation
-Add
-```
-"risul/laravel-like-comment": "dev-master"
-```
-In your ```composer.json``` file.
+#laravel-like-comment
+laravel-like-comment is a laravel package. It's an ajax based like and commenting system. Which can be used with anything like page, image, post, video etc. User needs to be loged in to be able to like or comment.
 
-Run 
-``` 
-composer update
-```
+## Features
+* Like
+* Dislike
+* Comment
+* Comment voting
+* User avatar in comment
 
-### Configuration
+## Installation
 
+Add `"risul/laravel-like-comment": "dev-master"` In your `composer.json` file.
+
+Run ` composer update `
+
+## Configuration
 Add 
 ``` 
 risul\LaravelLikeComment\LikeCommentServiceProvider::class in config/app.php
@@ -28,8 +31,8 @@ Run
 php artisan migrate
 ```
 
-Run Add this semantic style links to your view head
-```
+Add this semantic style links to your view head
+```html
     <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/icon.min.css" rel="stylesheet">
     <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/comment.min.css" rel="stylesheet">
     <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/components/form.min.css" rel="stylesheet">
@@ -44,7 +47,7 @@ In  ```config/laravelLikeComment.php``` add user model path
 
 
 Add following code in your user model 
-```
+```php
     /**
      * Return the user attributes.
 
@@ -65,15 +68,15 @@ Add following code in your user model
 ```
 
 
-### Usage
+## Usage
 Add this line at where you want to integrate Like
-```
+```php
 @include('laravelLikeComment::like', ['like_item_id' => 'post_31'])
 ```
 ```like_item_id:``` This is the id of the item/page/model for which the like will be used
 
 Add this line where you want to integrate Comment
-```
+```php
 @include('laravelLikeComment::comment', ['comment_item_id' => '12'])
 ```
 ```comment_item_id:``` This is the id of the item/page/model for which the comment will be used
