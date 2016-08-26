@@ -1,8 +1,13 @@
 # Installation
+Add
+```
+"risul/laravel-like-comment": "dev-master"
+```
+In your ```composer.json``` file.
 
 Run 
 ``` 
-composer require risul/laravel-like-comment 
+composer update
 ```
 
 ### Configuration
