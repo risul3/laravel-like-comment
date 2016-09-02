@@ -13,6 +13,9 @@ laravel-like-comment is an ajax based like and commenting system for laravel. Wh
 * Comment voting
 * User avatar in comment
 
+## Demo
+https://www.youtube.com/watch?v=06kcpsnN-bo
+
 ## Installation
 
 Run
