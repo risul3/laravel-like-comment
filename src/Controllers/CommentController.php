@@ -47,7 +47,7 @@ class CommentController extends Controller
 	    $comment->save();
 
 	    $id = $comment->id;
-    	return response()->json(['flag' => 1, 'id' => $id, 'comment' => $commentBody, 'item_id' => $itemId, 'userPic' => $userPic]);
+    	return response()->json(['flag' => 1, 'id' => $id, 'comment' => $commentBody, 'item_id' => $itemId, 'userName' => $user['name'], 'userPic' => $userPic]);
 // dd($comment);
     }
 

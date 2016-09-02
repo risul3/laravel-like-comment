@@ -28,7 +28,7 @@ function dfs($comments, $comment){
             <img src="{{ $comment->avatar }}">
         </a>
         <div class="content">
-            <a class="author" url="{{ $comment->url or '' }}"> {{ $comment->userName }} </a>
+            <a class="author" url="{{ $comment->url or '' }}"> {{ $comment->name }} </a>
             <div class="metadata">
                 <span class="date">{{ $comment->updated_at->diffForHumans() }}</span>
             </div>
