@@ -8,6 +8,8 @@ php:
   - 5.6
   - hhvm
 
+sudo: false
+
 # Commands to be run before your environment runs.
 before_script:
   - composer self-update
