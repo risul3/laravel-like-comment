@@ -74,3 +74,9 @@ $(document).on('click', '#showComment', function(){
     $(this).data("show-comment", show+1);
     $(this).text("Show more");
 });
+
+
+$(document).on('click', '#write-comment', function(){
+    $($(this).data("form")).show();
+});
+
