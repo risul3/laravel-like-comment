@@ -1,6 +1,6 @@
 {
     "name": "risul/laravel-like-comment",
-    "description": "Ajax based site wide like and comment system for laravel.",
+    "description": "Ajax based site wide like and comment system for laravel",
     "type": "library",
     "license": "MIT",
     "keywords": ["laravel", "like", "comment", "ajax"],
