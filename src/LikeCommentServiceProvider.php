@@ -31,13 +31,7 @@ class LikeCommentServiceProvider extends ServiceProvider
         // Route
         include __DIR__.'/routes.php';
 
-        if(\App::VERSION()[0] >= 5) {
-            $this->app->singleton('LaravelLikeComment', function ($app) { return new LaravelLikeComment; });
-        } else {
-            $this->app['LaravelLikeComment'] = $this->app->share(function($app) {
-                return new LaravelLikeComment;
-            });
-        }
+        $this->app->singleton('LaravelLikeComment', function ($app) { return new LaravelLikeComment; });
 
         // Config
         $this->mergeConfigFrom( __DIR__.'/config/laravelLikeComment.php', 'laravelLikeComment');
