@@ -33,7 +33,8 @@ class CommentController extends Controller
     	$itemId = $request->item_id;
 
         $user = self::getUser($userId);
-        if($user['avatar'] == 'gravatar'){
+        $userPic = $user['avatar'];
+        if($userPic == 'gravatar'){
             $hash = md5(strtolower(trim($user['email'])));
             $userPic = "http://www.gravatar.com/avatar/$hash?d=identicon";
         }
