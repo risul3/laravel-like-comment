@@ -1,8 +1,9 @@
-#laravel-like-comment
-
 [![Latest Stable Version](https://poser.pugx.org/risul/laravel-like-comment/v/stable)](https://packagist.org/packages/risul/laravel-like-comment)
 [![Total Downloads](https://poser.pugx.org/risul/laravel-like-comment/downloads)](https://packagist.org/packages/risul/laravel-like-comment)
 [![License](https://poser.pugx.org/risul/laravel-like-comment/license)](https://packagist.org/packages/risul/laravel-like-comment)
+
+Laravel like comment
+=====================
 
 laravel-like-comment is an ajax based like and commenting system for laravel. Which can be used with anything like page, image, post, video etc. User needs to be loged in to be able to like or comment.
 
@@ -14,7 +15,9 @@ laravel-like-comment is an ajax based like and commenting system for laravel. Wh
 * User avatar in comment
 
 ## Demo
-https://www.youtube.com/watch?v=06kcpsnN-bo
+[Try it](http://risul.herokuapp.com/laravel-like-comment)
+
+[Watch](https://www.youtube.com/watch?v=06kcpsnN-bo)
 
 ## Installation
 
