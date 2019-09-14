@@ -82,6 +82,8 @@ class CommentController extends Controller
             if($user['avatar'] == 'gravatar'){
                 $hash = md5(strtolower(trim($user['email'])));
                 $comment->avatar = "http://www.gravatar.com/avatar/$hash?d=identicon";
+            } else {
+                $comment->avatar = $user['avatar'];
             }
         }
 
