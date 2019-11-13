@@ -98,4 +98,14 @@ class CommentController extends Controller
         $userModel = config('laravelLikeComment.userModel');
         return $userModel::getAuthor($userId);
     }
+
+    /**
+     * Delete Comment
+     *
+     * @return json []
+     * @author risul3
+     **/
+    public function delete($id)
+    {
+    }
 }
