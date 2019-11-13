@@ -1,0 +1,12 @@
+<?php
+namespace risul\LaravelLikeComment\Tests;
+
+use risul\LaravelLikeComment\LikeCommentServiceProvider;
+
+abstract class PackageTestCase extends TestCase
+{
+    protected function getPackageProviders($app)
+    {
+        return [LikeCommentServiceProvider::class];
+    }
+}
