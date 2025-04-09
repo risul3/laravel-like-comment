@@ -5,7 +5,11 @@
 Laravel like comment
 =====================
 
-laravel-like-comment is an ajax based like and commenting system for laravel. Which can be used with anything like page, image, post, video etc. User needs to be loged in to be able to like or comment.
+Laravel Like Comment is a lightweight and developer-friendly package that makes it easy to add "like" and "comment" features to any Laravel model. Whether you're building a blog, forum, or social platform, this package handles the heavy lifting so you can focus on your core application.
+
+It supports polymorphic relationships out of the box, allowing you to attach likes and comments to multiple models effortlessly. With clean API methods and customizable migrations, it's built to be both powerful and flexible.
+
+Perfect for projects that need quick social interaction features without reinventing the wheel.
 
 ## Features
 * Like
